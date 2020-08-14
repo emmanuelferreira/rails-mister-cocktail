@@ -9,7 +9,6 @@
 
 <div class="cards">
   <% @cocktails.each do |cocktail| %>
-  url('<%= cl_image_path cocktail.photo.key %>')"
 
   <div class="card-cocktail" style="background-image: url(<%= cocktail.img_url %>); ">
     <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>

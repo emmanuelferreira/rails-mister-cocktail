@@ -1,12 +1,21 @@
 
-<h1>All our Gin cocktails</h1>
+<div class="banner-index" style="background-image: url(https://images.unsplash.com/photo-1575917123272-2f86e6d85133?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80); ">
+  <div class="container-index-detail">
+    <h1><strong><h1>All our Gin cocktails</h1></strong></h1>
+    <p>Cheers mate</p>
+  </div>
+</div>
+
+
 <div class="cards">
   <% @cocktails.each do |cocktail| %>
+  url('<%= cl_image_path cocktail.photo.key %>')"
+
   <div class="card-cocktail" style="background-image: url(<%= cocktail.img_url %>); ">
     <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
-    <div class="more-info">
-
-    </div>
   </div>
   <% end %>
+  <div class="card-cocktail" style="background-image: url(https://images.unsplash.com/photo-1536942192778-d9aabc82a47d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60); ">
+    <h2><%= link_to "+ Add new Gin", new_cocktail_path %></h2>
+  </div>
 </div>

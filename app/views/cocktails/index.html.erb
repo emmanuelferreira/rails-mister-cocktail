@@ -1,0 +1,12 @@
+
+<h1>All our Gin cocktails</h1>
+<div class="cards">
+  <% @cocktails.each do |cocktail| %>
+  <div class="card-cocktail" style="background-image: url(<%= cocktail.img_url %>); ">
+    <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
+    <div class="more-info">
+
+    </div>
+  </div>
+  <% end %>
+</div>

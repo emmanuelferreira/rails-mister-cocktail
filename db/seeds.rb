@@ -5,3 +5,46 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "json"
+require "open-uri"
+
+puts "Cleaning database..."
+Ingredient.destroy_all
+puts "Creating ingredients..."
+INGREDIENTS_URL = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+result = JSON.parse(open(INGREDIENTS_URL).read)
+
+result["drinks"].each do |data|
+  new_ingredient = Ingredient.new(name: data["strIngredient1"])
+  new_ingredient.save!
+end
+puts "Finished with the ingredients creation!"
+
+
+puts "Cleaning database..."
+Cocktail.destroy_all
+puts "Creating cocktails..."
+COCKTAILS_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=gin"
+result = JSON.parse(open(COCKTAILS_URL).read)
+
+result["drinks"].each do |data|
+  new_cocktail = Cocktail.new(name: data["strDrink"],
+    img_url: data["strDrinkThumb"])
+  new_cocktail.save!
+
+  i = 1
+  until i > 15 do
+    ingredient_id = Ingredient.find_by(name: data["strIngredient#{i}"])&.id
+    if ingredient_id.present?
+      dose = Dose.new(description: data["strMeasure#{i}"],
+        cocktail_id: new_cocktail.id,
+        ingredient_id: ingredient_id
+      )
+      dose.save
+    end
+
+    i += 1
+  end
+
+end
+puts "Finished!"

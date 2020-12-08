@@ -20,7 +20,6 @@ require "open-uri"
 # end
 # puts "Finished with the ingredients creation!"
 
-
 puts "Cleaning database..."
 Cocktail.destroy_all
 puts "Creating cocktails..."

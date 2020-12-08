@@ -13,15 +13,8 @@
   <body>
     <nav>
       <%= link_to image_tag("https://images.unsplash.com/photo-1595977437232-9a0426ebfe4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60", alt: "logo"), cocktails_path %>
-      <div class="links">
-        <% offset = rand(Cocktail.count) %>
-        <%= link_to "Random cocktail to spice your night", cocktail_path(Cocktail.offset(offset).first) %>
-      </div>
-
+        <p>Cheers mate</p>
     </nav>
-
       <%= yield %>
-
-
   </body>
 </html>
